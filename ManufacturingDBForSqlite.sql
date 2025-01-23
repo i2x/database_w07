@@ -65,55 +65,45 @@ CREATE TABLE PartMadeBy (
     FOREIGN KEY (part_id) REFERENCES Part(id)
 );
 
--- Insert sample data into Address table
-INSERT INTO Address (country, state, city, road, zip_code) VALUES
-('USA', 'California', 'Los Angeles', '123 Main St', '90001'),
-('Brazil', 'São Paulo', 'São Paulo', '456 Paulista Ave', '01310-000'),
-('Germany', 'Bavaria', 'Munich', '789 Autobahn St', '80331'),
-('Japan', 'Tokyo', 'Tokyo', '101 Ginza St', '104-0061');
 
--- Insert sample data into Manufacturer table
+-- Insert into Address
+INSERT INTO Address (country, state, city, road, zip_code) VALUES 
+('USA', 'California', 'San Francisco', 'Market Street', '94103'),
+('Brazil', 'São Paulo', 'São Paulo', 'Avenida Paulista', '01311-200'),
+('USA', 'Texas', 'Austin', 'Congress Avenue', '73301'),
+('Brazil', 'Rio de Janeiro', 'Rio de Janeiro', 'Rua Nascimento Silva', '22421-000');
+
+-- Insert into Manufacturer
 INSERT INTO Manufacturer (name, website, email, tel, address_id) VALUES
-('Tornad', 'www.tornad.com', 'info@tornad.com', '+1-123-456-7890', 1),
-('Hamax Power', 'www.hamaxpower.com', 'contact@hamaxpower.com', '+49-89-1234567', 3),
-('Aree Motors', 'www.areemotors.com', 'support@areemotors.com', '+55-11-987654321', 2);
+('Tornad', 'www.tornad.com', 'contact@tornad.com', '+14155551234', 1),
+('Zoom Motors', 'www.zoommotors.com', 'support@zoommotors.com', '+15125559876', 3);
 
--- Insert sample data into Model table
+-- Insert into Model
 INSERT INTO Model (name, type, color, year, manu_id) VALUES
-('Tornad X1', 'Sedan', 'Red', 2022, 1),
-('Tornad X2', 'SUV', 'Blue', 2023, 1),
-('Aree', 'Hatchback', 'Green', 2021, 3),
-('Aree Pro', 'Sedan', 'Black', 2023, 3);
+('Aree', 'SUV', 'Red', 2023, 1),
+('Bolt', 'Sedan', 'Blue', 2022, 1),
+('ZoomX', 'Convertible', 'Yellow', 2024, 2);
 
--- Insert sample data into Part table
+-- Insert into Part
 INSERT INTO Part (name, description, category, doc_link) VALUES
-('Battery', 'High-capacity lithium-ion battery', 'Battery', 'www.battery.com/doc'),
-('Engine', 'V6 Turbocharged Engine', 'Engine', 'www.engine.com/doc'),
-('Tire', 'All-season radial tire', 'Tire', 'www.tire.com/doc'),
-('Brake', 'High-performance brake system', 'Brake', 'www.brake.com/doc');
+('Battery A1', 'High-performance battery', 'Battery', 'www.docs.com/battery_a1'),
+('Engine X', 'V8 engine', 'Engine', 'www.docs.com/engine_x'),
+('Battery B2', 'Standard battery', 'Battery', 'www.docs.com/battery_b2');
 
--- Insert sample data into Supplier table
+-- Insert into Supplier
 INSERT INTO Supplier (name, website, email, tel, address_id) VALUES
-('Hamax Power', 'www.hamaxpower.com', 'sales@hamaxpower.com', '+49-89-7654321', 3),
-('Brazil Parts', 'www.brazilparts.com', 'info@brazilparts.com', '+55-11-1234567', 2),
-('Global Tires', 'www.globaltires.com', 'contact@globaltires.com', '+1-234-567-8901', 1);
+('Hamax Power', 'www.hamaxpower.com', 'info@hamax.com', '+551199876543', 2),
+('EngineMax', 'www.enginemax.com', 'support@enginemax.com', '+14155556789', 3);
 
--- Insert sample data into PartOfModel table
+-- Insert into PartOfModel
 INSERT INTO PartOfModel (model_id, part_id) VALUES
-(1, 1), -- Tornad X1 uses Battery
-(2, 1), -- Tornad X2 uses Battery
-(3, 1), -- Aree uses Battery
-(4, 1), -- Aree Pro uses Battery
-(1, 2), -- Tornad X1 uses Engine
-(2, 2), -- Tornad X2 uses Engine
-(3, 3), -- Aree uses Tire
-(4, 3), -- Aree Pro uses Tire
-(3, 4), -- Aree uses Brake
-(4, 4); -- Aree Pro uses Brake
+(1, 1), -- Aree uses Battery A1
+(1, 2), -- Aree uses Engine X
+(2, 3), -- Bolt uses Battery B2
+(3, 1); -- ZoomX uses Battery A1
 
--- Insert sample data into PartMadeBy table
+-- Insert into PartMadeBy
 INSERT INTO PartMadeBy (sup_id, part_id) VALUES
-(1, 1), -- Hamax Power makes Battery
-(2, 2), -- Brazil Parts makes Engine
-(3, 3), -- Global Tires makes Tire
-(2, 4); -- Brazil Parts makes Brake
+(1, 1), -- Hamax Power makes Battery A1
+(2, 2), -- EngineMax makes Engine X
+(1, 3); -- Hamax Power makes Battery B2
