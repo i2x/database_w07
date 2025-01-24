@@ -1,6 +1,5 @@
-#list
-docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}"
-
+#show container 
+docker ps --format "table {{.Image}}\t{{.Status}}\t{{.Ports}}" | column -t -s $'\t'
 
 #setup
 docker cp ManufacturingDB.sql oracle-db:/tmp/ManufacturingDB.sql

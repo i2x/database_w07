@@ -1,4 +1,5 @@
 -- b) แสดงรายชื่อผู้ผลิตชิ้นส่วน (Supplier) ที่อยู่ในประเทศบราซิล ที่ผลิตชิ้นส่วนให้กับรถที่มีชื่อรุ่น (Model) ว่า Aree
+--- cat query_002.sql | docker exec -i oracle-db sqlplus / as sysdba
 
 SELECT DISTINCT s.name AS supplier_name
 FROM Supplier s
