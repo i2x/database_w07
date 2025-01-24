@@ -1,4 +1,19 @@
--- Drop ManufacturingDB if it exists
+-- Drop existing tables if they exist to avoid duplicates
+BEGIN
+   EXECUTE IMMEDIATE 'DROP TABLE PartMadeBy CASCADE CONSTRAINTS';
+   EXECUTE IMMEDIATE 'DROP TABLE PartOfModel CASCADE CONSTRAINTS';
+   EXECUTE IMMEDIATE 'DROP TABLE Supplier CASCADE CONSTRAINTS';
+   EXECUTE IMMEDIATE 'DROP TABLE Part CASCADE CONSTRAINTS';
+   EXECUTE IMMEDIATE 'DROP TABLE Model CASCADE CONSTRAINTS';
+   EXECUTE IMMEDIATE 'DROP TABLE Manufacturer CASCADE CONSTRAINTS';
+   EXECUTE IMMEDIATE 'DROP TABLE Address CASCADE CONSTRAINTS';
+EXCEPTION
+   WHEN OTHERS THEN
+      NULL; -- Ignore errors if tables do not exist
+END;
+/
+
+-- Drop the ManufacturingDB if it exists
 BEGIN
    EXECUTE IMMEDIATE 'DROP PLUGGABLE DATABASE ManufacturingDB INCLUDING DATAFILES';
 EXCEPTION
@@ -6,6 +21,7 @@ EXCEPTION
       NULL; -- Ignore error if database does not exist
 END;
 /
+
 
 -- Create the ManufacturingDB
 CREATE PLUGGABLE DATABASE ManufacturingDB
@@ -116,3 +132,6 @@ INSERT INTO PartMadeBy (sup_id, part_id) VALUES
 (1, 1),
 (2, 2),
 (1, 3);
+
+-- End of SQL file
+EXIT;
