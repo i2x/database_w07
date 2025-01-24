@@ -1,4 +1,5 @@
 -- c) แสดงรายชื่อรุ่นของรถทั้งหมด ที่ใช้แบตเตอรี่ที่ผลิตโดย Hamax Power
+
 SELECT DISTINCT m.name AS model_name
 FROM Model m
 JOIN PartOfModel pom ON m.id = pom.model_id
